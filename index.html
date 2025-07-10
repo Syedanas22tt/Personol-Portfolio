@@ -87,6 +87,74 @@
         .neon-glow {
             box-shadow: 0 0 5px #06b6d4, 0 0 10px #06b6d4, 0 0 15px #06b6d4;
         }
+        /* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    overflow: auto;
+    transition: all 0.3s ease;
+}
+
+.modal-content {
+    display: block;
+    max-width: 90%;
+    max-height: 80vh;
+    margin: 5% auto;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.9); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #06b6d4;
+    transform: scale(1.2);
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    font-size: 1.5rem;
+}
+
+/* Responsive modal */
+@media only screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+    }
+    
+    .close {
+        top: 15px;
+        right: 25px;
+        font-size: 30px;
+    }
+}
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -254,119 +322,120 @@
             <!-- Portfolio Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 portfolio-container">
                 <!-- Portfolio Item 1 -->
-                <div class="portfolio-item work-card transition-all duration-500 branding" data-category="branding">
-                    <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
-                        <div class="relative overflow-hidden group">
-                            <img src="./Brand logo design.jpeg" alt="Modern brand identity system for a tech startup" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <div>
-                                    <h4 class="text-white text-lg font-semibold mb-2">Tech Startup Branding</h4>
-                                    <p class="text-green-300 text-sm">Complete brand identity system</p>
-                                </div>
+                <div class="portfolio-item work-card transition-all duration-500 branding cursor-pointer" data-category="branding" onclick="openModal('./Brand logo design.jpeg', 'NeoVision Brand Identity')">
+                <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
+                    <div class="relative overflow-hidden group">
+                        <img src="./Brand logo design.jpeg" alt="Modern brand identity system for a tech startup" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <div>
+                                <h4 class="text-white text-lg font-semibold mb-2">Tech Startup Branding</h4>
+                                <p class="text-green-300 text-sm">Complete brand identity system</p>
                             </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gradient mb-3">NeoVision Brand Identity</h3>
-                            <p class="text-gray-400">Logo, color palette, typography and brand guidelines</p>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Portfolio Item 2 -->
-                <div class="portfolio-item work-card transition-all duration-500 digital" data-category="digital">
-                    <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
-                        <div class="relative overflow-hidden group">
-                            <img src="./Mobile App_ Fitness Tracker App.jpeg" alt="Mobile app interface design" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <div>
-                                    <h4 class="text-white text-lg font-semibold mb-2">Fitness App UI</h4>
-                                    <p class="text-green-300 text-sm">Mobile application design</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gradient mb-3">FitTrack App Design</h3>
-                            <p class="text-gray-400">Complete UI/UX for fitness tracking application</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 3 -->
-                <div class="portfolio-item work-card transition-all duration-500 print" data-category="print">
-                    <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
-                        <div class="relative overflow-hidden group">
-                            <img src="./Fashion urban streetwear social media post template _ Premium PSD.jpeg" alt="Magazine layout design" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <div>
-                                    <h4 class="text-white text-lg font-semibold mb-2">Lifestyle Magazine</h4>
-                                    <p class="text-green-300 text-sm">Editorial layout design</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gradient mb-3">Urban Lifestyle Magazine</h3>
-                            <p class="text-gray-400">Complete magazine layout and design</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 4 -->
-                <div class="portfolio-item work-card transition-all duration-500 branding" data-category="branding">
-                    <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
-                        <div class="relative overflow-hidden group">
-                            <img src="./Minimalist Yellow and Black Logo Idea for Coffee Shop.jpeg" alt="Coffee shop branding package" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <div>
-                                    <h4 class="text-white text-lg font-semibold mb-2">Coffee Brand Identity</h4>
-                                    <p class="text-green-300 text-sm">Complete branding package</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gradient mb-3">Brew & Co Branding</h3>
-                            <p class="text-gray-400">Logo, packaging, and storefront design</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 5 -->
-                <div class="portfolio-item work-card transition-all duration-500 digital" data-category="digital">
-                    <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
-                        <div class="relative overflow-hidden group">
-                            <img src="./5in1 Electricity Services Website Template.jpeg" alt="Website homepage design" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <div>
-                                    <h4 class="text-white text-lg font-semibold mb-2">Corporate Website</h4>
-                                    <p class="text-green-300 text-sm">Responsive web design</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gradient mb-3">FinTech Website Design</h3>
-                            <p class="text-gray-400">Complete website UI/UX design</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 6 -->
-                <div class="portfolio-item work-card transition-all duration-500 print branding" data-category="print branding">
-                    <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
-                        <div class="relative overflow-hidden group">
-                            <img src="./Simple.jpeg" alt="Product packaging design" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <div>
-                                    <h4 class="text-white text-lg font-semibold mb-2">Product Packaging</h4>
-                                    <p class="text-green-300 text-sm">Sustainable packaging design</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold text-gradient mb-3">Skincare Product Line</h3>
-                            <p class="text-gray-400">Packaging and label design</p>
-                        </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gradient mb-3">NeoVision Brand Identity</h3>
+                        <p class="text-gray-400">Logo, color palette, typography and brand guidelines</p>
                     </div>
                 </div>
             </div>
+            
+            <!-- Portfolio Item 2 -->
+            <div class="portfolio-item work-card transition-all duration-500 digital cursor-pointer" data-category="digital" onclick="openModal('./Mobile App_ Fitness Tracker App.jpeg', 'FitTrack App Design')">
+                <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
+                    <div class="relative overflow-hidden group">
+                        <img src="./Mobile App_ Fitness Tracker App.jpeg" alt="Mobile app interface design" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <div>
+                                <h4 class="text-white text-lg font-semibold mb-2">Fitness App UI</h4>
+                                <p class="text-green-300 text-sm">Mobile application design</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gradient mb-3">FitTrack App Design</h3>
+                        <p class="text-gray-400">Complete UI/UX for fitness tracking application</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Portfolio Item 3 -->
+            <div class="portfolio-item work-card transition-all duration-500 print cursor-pointer" data-category="print" onclick="openModal('./Fashion urban streetwear social media post template _ Premium PSD.jpeg', 'Urban Lifestyle Magazine')">
+                <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
+                    <div class="relative overflow-hidden group">
+                        <img src="./Fashion urban streetwear social media post template _ Premium PSD.jpeg" alt="Magazine layout design" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <div>
+                                <h4 class="text-white text-lg font-semibold mb-2">Lifestyle Magazine</h4>
+                                <p class="text-green-300 text-sm">Editorial layout design</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gradient mb-3">Urban Lifestyle Magazine</h3>
+                        <p class="text-gray-400">Complete magazine layout and design</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Portfolio Item 4 -->
+            <div class="portfolio-item work-card transition-all duration-500 branding cursor-pointer" data-category="branding" onclick="openModal('./Minimalist Yellow and Black Logo Idea for Coffee Shop.jpeg', 'Brew & Co Branding')">
+                <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
+                    <div class="relative overflow-hidden group">
+                        <img src="./Minimalist Yellow and Black Logo Idea for Coffee Shop.jpeg" alt="Coffee shop branding package" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <div>
+                                <h4 class="text-white text-lg font-semibold mb-2">Coffee Brand Identity</h4>
+                                <p class="text-green-300 text-sm">Complete branding package</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gradient mb-3">Brew & Co Branding</h3>
+                        <p class="text-gray-400">Logo, packaging, and storefront design</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Portfolio Item 5 -->
+            <div class="portfolio-item work-card transition-all duration-500 digital cursor-pointer" data-category="digital" onclick="openModal('./5in1 Electricity Services Website Template.jpeg', 'FinTech Website Design')">
+                <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
+                    <div class="relative overflow-hidden group">
+                        <img src="./5in1 Electricity Services Website Template.jpeg" alt="Website homepage design" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <div>
+                                <h4 class="text-white text-lg font-semibold mb-2">Corporate Website</h4>
+                                <p class="text-green-300 text-sm">Responsive web design</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gradient mb-3">FinTech Website Design</h3>
+                        <p class="text-gray-400">Complete website UI/UX design</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Portfolio Item 6 -->
+            <div class="portfolio-item work-card transition-all duration-500 print branding cursor-pointer" data-category="print branding" onclick="openModal('./Simple.jpeg', 'Skincare Product Line')">
+                <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50">
+                    <div class="relative overflow-hidden group">
+                        <img src="./Simple.jpeg" alt="Product packaging design" class="w-full h-64 object-cover transition-all duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <div>
+                                <h4 class="text-white text-lg font-semibold mb-2">Product Packaging</h4>
+                                <p class="text-green-300 text-sm">Sustainable packaging design</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gradient mb-3">Skincare Product Line</h3>
+                        <p class="text-gray-400">Packaging and label design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
             
             <div class="text-center mt-12">
                 <button class="px-8 py-4 border-2 border-cyan-400 text-green-300 font-semibold rounded-xl hover:bg-cyan-400 hover:text-gray-900 transition-all duration-300 shadow-lg hover:shadow-cyan-400/25 transform hover:scale-105 view-more-btn">
@@ -786,22 +855,63 @@
     </button>
 
     <!-- Success Modal -->
-    <div id="success-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
-        <div class="bg-gray-800/90 backdrop-blur-lg rounded-2xl p-8 max-w-md mx-4 border border-gray-700/50 shadow-2xl">
-            <div class="text-center mb-8">
-                <div class="text-green-400 text-6xl mb-6">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-gradient mb-4">Message Sent Successfully!</h3>
-                <p class="text-gray-300 leading-relaxed">Thank you for reaching out. I'll get back to you soon.</p>
-            </div>
-            <button id="close-modal" class="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-xl hover:from-cyan-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 transform hover:scale-105">
-                Close
-            </button>
-        </div>
+    <div id="projectModal" class="modal">
+    <span class="close" onclick="closeProjectModal()">&times;</span>
+    <img class="modal-content" id="projectModalImage">
+    <div id="projectModalCaption" class="text-center text-white mt-4 text-xl"></div>
+    <div class="text-center mt-6">
+        <button onclick="closeProjectModal()" class="px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg hover:from-cyan-600 hover:to-purple-600 transition-all duration-300">
+            Close Preview
+        </button>
     </div>
-
+</div>
     <script>
+        // Project Preview Modal
+function openProjectModal(imageSrc, title) {
+    const modal = document.getElementById('projectModal');
+    const modalImg = document.getElementById('projectModalImage');
+    const caption = document.getElementById('projectModalCaption');
+    
+    modal.style.display = 'block';
+    modalImg.src = imageSrc;
+    caption.innerHTML = title;
+    
+    // Prevent scrolling when modal is open
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('projectModal');
+    modal.style.display = 'none';
+    
+    // Restore scrolling
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside the image
+window.onclick = function(event) {
+    const modal = document.getElementById('projectModal');
+    if (event.target === modal) {
+        closeProjectModal();
+    }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    const modal = document.getElementById('projectModal');
+    if (event.key === 'Escape' && modal.style.display === 'block') {
+        closeProjectModal();
+    }
+});
+
+// Add click event to all project cards
+document.querySelectorAll('.work-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const imgSrc = this.querySelector('img').src;
+        const title = this.querySelector('h3').textContent;
+        openProjectModal(imgSrc, title);
+    });
+});
         // Mobile menu toggle
         const menuBtn = document.getElementById('menu-btn');
         const menu = document.getElementById('menu');
@@ -881,6 +991,37 @@
         
         viewMoreBtn.addEventListener('click', () => {
             alert('In a real implementation, this would load more portfolio items.');
+        });
+    </script>
+    <script>
+        function openModal(imageSrc, title) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const caption = document.getElementById('caption');
+            
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+            caption.innerHTML = title;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>
